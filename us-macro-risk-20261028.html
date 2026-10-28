@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>美股宏觀風險提示 | 2026-10-28</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1b2029; --sub:#5b6472;
+    --line:#e3e6eb; --red:#b02a2a; --red-soft:#f6e7e7;
+    --amber:#b7791f; --amber-soft:#fbf1de;
+    --blue:#1f4e79; --green:#2f6b4f;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Helvetica Neue",Arial,sans-serif;
+    line-height:1.72;font-size:15px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:36px 22px 64px;}
+  header{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:26px;}
+  .kicker{font-size:12px;letter-spacing:.18em;color:var(--sub);text-transform:uppercase;}
+  h1{font-size:29px;margin:8px 0 6px;letter-spacing:.02em;}
+  .meta{font-size:13px;color:var(--sub);}
+  h2{font-size:19px;margin:38px 0 14px;padding-left:11px;border-left:4px solid var(--blue);}
+  h3{font-size:15.5px;margin:22px 0 8px;color:var(--ink);}
+  p{margin:9px 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;}
+  .tldr{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--red);
+    border-radius:10px;padding:20px 22px;}
+  .tldr .lead{font-size:16.5px;font-weight:600;margin-bottom:8px;}
+  .grid{display:grid;gap:14px;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:760px){.g4{grid-template-columns:repeat(2,1fr);}.g2{grid-template-columns:1fr;}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .kpi .lab{font-size:12.5px;color:var(--sub);}
+  .kpi .val{font-size:22px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;}
+  .kpi .note{font-size:12px;color:var(--sub);margin-top:2px;}
+  .up{color:var(--red);} .down{color:var(--green);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);}
+  th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;}
+  th{background:#eef1f5;font-weight:600;font-size:13px;color:#33404f;}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .src{font-size:12px;color:var(--sub);margin-top:8px;}
+  .tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:20px;
+    background:var(--red-soft);color:var(--red);margin-right:6px;white-space:nowrap;}
+  .tag.a{background:var(--amber-soft);color:var(--amber);}
+  .tag.b{background:#e8eef5;color:var(--blue);}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 6px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;font-size:13px;flex:1 1 130px;text-align:center;}
+  .box b{display:block;font-size:13.5px;}
+  .box span{font-size:11.5px;color:var(--sub);}
+  .arrow{color:#9aa3b0;font-size:15px;}
+  .box.hot{border-color:#e0b4b4;background:#fdf6f6;}
+  .toggle{display:flex;gap:8px;margin-bottom:10px;}
+  .toggle button{border:1px solid var(--line);background:#fff;color:var(--sub);
+    padding:5px 14px;border-radius:6px;font-size:12.5px;cursor:pointer;}
+  .toggle button.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .chart{width:100%;height:340px;}
+  .hide{display:none;}
+  ul{margin:8px 0 8px 20px;padding:0;}
+  li{margin:5px 0;}
+  .disc{margin-top:34px;padding:16px 18px;background:#eef1f5;border-radius:8px;
+    font-size:12.5px;color:#4a5361;}
+  .flag{background:var(--amber-soft);border:1px solid #ecd9b4;border-radius:8px;
+    padding:12px 15px;font-size:13.5px;margin:14px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">US EQUITY · MACRO RISK BRIEF</div>
+  <h1>美股宏觀風險提示：分母端的緩衝已經用盡</h1>
+  <div class="meta">資料截止 2026-10-28 盤中（北京時間 22:55）｜ 覆蓋窗口 未來 1–3 個月</div>
+</header>
+
+<div class="tldr">
+  <div class="lead">核心判斷：當前的主要風險是高油價推高通胀、聯準會被迫重啟加息、長端利率停在 5% 以上，三者互相強化，最終壓低估值，而非「衰退」。</div>
+  <p>市場組合是「盈利強勁、估值昂貴、政策轉向緊縮、流動性預期收緊」。標普 500 前瞻盈利收益率約 5%，與 10 年期美債 4.99% 基本相等，<b>股債風險溢價歸零</b>，這是網路泡沫以來最緊的水平；這意味著任何通脹意外都會被完整傳導為估值下殺。</p>
+  <p>真正的觸發器不是「聯準會加不加息」，而是<b>油價能否回落、帶動長端利率下行</b>。基準情形為高位寬幅震盪加劇板塊分化，而非單邊趨勢。</p>
+</div>
+
+<h2>一、當前市場座標</h2>
+<div class="grid g4">
+  <div class="kpi"><div class="lab">標普 500</div><div class="val">7,726.56</div><div class="note">YTD +12.87%｜距 52 週高 -1.5%</div></div>
+  <div class="kpi"><div class="lab">10Y 美債</div><div class="val up">4.99%</div><div class="note">10 月初高點 5.34%</div></div>
+  <div class="kpi"><div class="lab">9 月 CPI（同比）</div><div class="val up">3.7%</div><div class="note">核心 2.6%，均超預期</div></div>
+  <div class="kpi"><div class="lab">聯邦基金利率</div><div class="val">3.75–4.00%</div><div class="note">9/16 加息 25bp</div></div>
+</div>
+
+<div style="height:14px"></div>
+<table>
+  <tr><th style="width:26%">指標</th><th style="width:22%">最新值</th><th>說明</th></tr>
+  <tr><td>納斯達克綜合</td><td class="num">26,434.04（-0.17%）</td><td>YTD +13.73%，10 月轉入高位震盪</td></tr>
+  <tr><td>道瓊工業</td><td class="num">52,459.09（+0.16%）</td><td>YTD +9.15%，近 60 日 -3.01%，明顯落後</td></tr>
+  <tr><td>30Y 美債</td><td class="num">5.30%</td><td>10/8 曾觸 5.73%，24 年高位</td></tr>
+  <tr><td>2Y 美債 / 10Y-2Y 利差</td><td class="num">4.70% / +29bp</td><td>季度維度呈「熊陡」，反映期限溢價回升而非增長回暖</td></tr>
+  <tr><td>9 月 PPI（同比）</td><td class="num">6.3%</td><td>批發端成本向消費端傳導的證據</td></tr>
+  <tr><td>VIX / VIX_NDX / VIX_OIL_ETF</td><td class="num">18.39 / 26.4 / 58.7</td><td>指數層面波動不高，但科技與原油板塊波動顯著擡升</td></tr>
+  <tr><td>美元指數 DXY</td><td class="num">102.38</td><td>9 月底至 10 月初累計 +4%，高位盤整</td></tr>
+  <tr><td>聯準會總資產</td><td class="num">6.75 萬億美元</td><td>同比 +1,571 億，縮表已現轉向跡象</td></tr>
+</table>
+<div class="src">來源：westock-data 宏觀指標（2026-10-28）；行情為 2026-10-28 盤中報價，債券收益率截至 10/27 收盤。</div>
+
+<h2>二、風險排序</h2>
+<p>以下為定性打分（影響幅度 × 觸發即時性，各 1–5 分），不是量化模型輸出，用途是排序而非精確定價。</p>
+<div class="toggle">
+  <button id="btnC" class="on" onclick="switchRisk('c')">圖</button>
+  <button id="btnT" onclick="switchRisk('t')">表</button>
+</div>
+<div id="riskChart" class="chart"></div>
+<div id="riskTable" class="hide">
+  <table>
+    <tr><th style="width:32%">風險</th><th style="width:14%">影響幅度</th><th style="width:14%">即時性</th><th>傳導路徑</th></tr>
+    <tr><td>油價二次衝擊 → 通脹黏性</td><td class="num">5</td><td class="num">5</td><td>油價 → CPI/PPI → 通脹預期 → 政策利率 → 估值與利潤率雙殺</td></tr>
+    <tr><td>長端利率停在 5% 以上</td><td class="num">5</td><td class="num">5</td><td>期限溢價 → 折現率 → 長久期資產估值</td></tr>
+    <tr><td>股債風險溢價歸零</td><td class="num">5</td><td class="num">4</td><td>無風險利率 ≈ 盈利收益率 → 股票失去相對補償</td></tr>
+    <tr><td>聯準會重啟加息</td><td class="num">4</td><td class="num">5</td><td>12 月加息定價 77%–90% → 實際利率上行 → 估值壓縮</td></tr>
+    <tr><td>市場廣度極差、集中度極端</td><td class="num">4</td><td class="num">4</td><td>7 檔權重股撐指數 → 任一失手即衝擊指數</td></tr>
+    <tr><td>AI 資本開支的融資—回報鏈</td><td class="num">5</td><td class="num">3</td><td>FCF 被吞噬 → 轉向發債 → 信用利差走闊 → 融資成本上升</td></tr>
+    <tr><td>信用與商業地產到期牆</td><td class="num">4</td><td class="num">3</td><td>再融資成本 → 區域銀行資產質量 → 信貸收縮</td></tr>
+    <tr><td>中期選舉政策不確定（11/3）</td><td class="num">3</td><td class="num">3</td><td>國會歸屬 → 財政/監管預期 → 板塊輪動</td></tr>
+    <tr><td>外部傳染（日債日元、法債、強美元）</td><td class="num">3</td><td class="num">2</td><td>套利交易平倉 → 全球風險資產同步去槓桿</td></tr>
+  </table>
+</div>
+
+<h2>三、主傳導鏈：一條線串起四個風險</h2>
+<div class="chain">
+  <div class="box hot"><b>中東衝突</b><span>荷姆茲海峽受阻</span></div>
+  <div class="arrow">→</div>
+  <div class="box hot"><b>油價 100 美元附近</b><span>能源同比 +20.4%</span></div>
+  <div class="arrow">→</div>
+  <div class="box hot"><b>CPI 3.7% / PPI 6.3%</b><span>核心連續兩月走強</span></div>
+  <div class="arrow">→</div>
+  <div class="box hot"><b>12 月加息預期</b><span>年底前至少一次 &gt;95%</span></div>
+  <div class="arrow">→</div>
+  <div class="box hot"><b>長端 5%+</b><span>30Y 一度 5.73%</span></div>
+  <div class="arrow">→</div>
+  <div class="box hot"><b>估值壓縮</b><span>溢價緩衝為零</span></div>
+</div>
+<p style="font-size:13.5px;color:var(--sub);margin-top:10px;">這條鏈的特殊之處：油價同時打擊分子（企業成本、家庭實際收入）與分母（折現率），是四季度唯一能同時傷害盈利與估值的變量。而核心 CPI 已連續兩個月走強、服務與住房通脹維持 3.2%，說明壓力已從能源擴散至更廣領域。</p>
+
+<h2>四、估值端：緩衝在哪裡</h2>
+<div class="toggle">
+  <button id="btnC2" class="on" onclick="switchYield('c')">圖</button>
+  <button id="btnT2" onclick="switchYield('t')">表</button>
+</div>
+<div id="yieldChart" class="chart" style="height:300px;"></div>
+<div id="yieldTable" class="hide">
+  <table>
+    <tr><th>項目</th><th>水平</th><th>含義</th></tr>
+    <tr><td>標普 500 前瞻盈利收益率</td><td class="num">約 5.0%</td><td>對應前瞻 P/E 約 19 倍</td></tr>
+    <tr><td>10Y 美債收益率</td><td class="num">4.99%</td><td>無風險基準</td></tr>
+    <tr><td>30Y 美債收益率</td><td class="num">5.30%</td><td>長久期折現基準</td></tr>
+    <tr><td>聯邦基金上限</td><td class="num">4.00%</td><td>政策利率</td></tr>
+  </table>
+</div>
+<p style="margin-top:12px;">股票相對無風險資產的額外補償已壓縮至 <b>0</b>，為網路泡沫以來最緊。同時，前瞻 P/E 19 倍背後隱含的是未來數年 15%+ 的盈利增長與利潤率繼續擴張，即「真正的生產率奇蹟」假設——預期本身已無容錯空間。</p>
+<p>集中度是第二層脆弱性：晨星測算美股整體較其合理價值折價約 10%，而這 10% 的折價<b>全部由 7 檔超大型股貢獻</b>；剔除這 7 檔，其餘覆蓋範圍「恰好在合理價值」。跌破 200 日均線、創 52 週新低的個股數量持續增加，指數新高靠極少數股票拖動。</p>
+
+<h2>五、情景推演</h2>
+<table>
+  <tr><th style="width:18%">情景</th><th style="width:12%">主觀概率</th><th>觸發條件與市場含義</th></tr>
+  <tr><td><b>基準：高位寬幅震盪</b></td><td class="num">約 55%</td><td>長端在 5% 附近企穩、盈利延續增長。指數難有大幅突破，AI 基建、能源、金融、工業相對佔優；非 AI 長久期成長與消費承壓。</td></tr>
+  <tr><td><b>下行：估值壓縮擴散</b></td><td class="num">約 30%</td><td>布倫特向 125 美元、長端再上台階、聯準會被迫加碼。機構測算標普回撤可達 8%，支撐區 7,100–7,200。</td></tr>
+  <tr><td><b>上行：油價回落帶動利率下行</b></td><td class="num">約 15%</td><td>中東局勢緩和、選舉結果非極端、盈利向雲廠商與應用端擴散，行情從少數龍頭向更廣範圍延伸。</td></tr>
+</table>
+<div class="src">概率為主觀賦值，依據機構觀點分歧度與當前定價隱含的期貨概率；機構目標位：巴克萊 7,950、摩根士丹利與高盛 8,000、美銀 7,400。</div>
+
+<h2>六、未來 6 週日曆（高波動節點）</h2>
+<table>
+  <tr><th style="width:26%">時點（北京時間）</th><th style="width:26%">事件</th><th>觀察焦點</th></tr>
+  <tr><td class="num">10/29 02:00</td><td>10 月 FOMC 決議 + 沃什記者會</td><td>焦點不是「是否暫停」（已定價 15%–30% 加息概率），而是「如何解釋暫停」：是否刪除「支持及時回歸 2%」措辭、是否出現鷹派異見票</td></tr>
+  <tr><td class="num">10/29 20:30</td><td>9 月 PCE</td><td>德銀預計核心 PCE 同比升至 3.1%–3.2%，若兌現則 12 月加息幾乎鎖定</td></tr>
+  <tr><td class="num">10 月下旬–11 月</td><td>三季報密集期</td><td>超大型廠商 AI 資本開支指引的上修或下修，是行情勝負手</td></tr>
+  <tr><td class="num">11/3</td><td>美國中期選舉</td><td>民主黨重奪眾議院概率高，參議院概率升至 60% 以上；最現實結果仍是政治僵局</td></tr>
+  <tr><td class="num">12/9</td><td>12 月 FOMC</td><td>市場定價加息概率 77%–90%，德銀預計 12 月與明年 3 月各加 25bp</td></tr>
+</table>
+
+<h2>七、需要盯的觸發閾值</h2>
+<div class="flag">
+  <b>不是「有沒有壞消息」，而是這幾條線是否被突破：</b>
+  <ul>
+    <li><b>10Y 快速上破 5.20%</b>（尤其兩週內上行超 25bp）——估值壓縮從科技蔓延至全市場的前兆；速度比絕對水平更重要。</li>
+    <li><b>布倫特站上 110 美元</b>——柴油與成品油價格的滯後上行會二次推高商品成本。</li>
+    <li><b>30Y 上破 5.60%</b>——房貸與商業地產再融資的裂縫會先暴露。</li>
+    <li><b>高收益債（JNK）相對全債（AGG）持續跑輸</b>——信用利差走闊若由信用質量而非利率驅動，是 AI 融資鏈條緊張的先行信號。</li>
+    <li><b>VIX 與 VIX_NDX 背離收斂</b>——目前低 VIX 主要由做市商 Gamma 對沖壓平，一旦波動率跳升可能觸發連鎖拋售。</li>
+  </ul>
+</div>
+
+<h2>八、對組合結構的含義</h2>
+<div class="grid g2">
+  <div class="card">
+    <h3>壓力方向</h3>
+    <ul>
+      <li>長久期、非 AI 的成長股：折現率敏感度最高</li>
+      <li>可選消費：油價侵蝕實際收入，且信貸成本上升</li>
+      <li>高槓桿、依賴外部融資的主體：信用分化已在定價</li>
+      <li>區域銀行與商業地產鏈條：到期牆疊加高利率</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>相對支撐</h3>
+    <ul>
+      <li>現金流可持續高於融資成本的企業（高利率加速內部分化）</li>
+      <li>AI 瓶頸環節：晶片、資料中心、電力基建</li>
+      <li>能源與通脹對沖資產（商品、黃金）</li>
+      <li>短端美債：名義與實際收益率均處高位，防禦價值擡升</li>
+    </ul>
+  </div>
+</div>
+<p style="margin-top:12px;">需要明確一點：多數機構（貝萊德戰術下調至中性、美銀看 7,400）的方向是「降低貝塔、提高選股權重」，而非全面看空。AI 基建支撐盈利的長期邏輯並未被否定，被否定的是「以任何價格買入」的合理性。</p>
+
+<div class="disc">
+  <b>免責聲明</b>：以上內容基於公開數據和量化分析，僅供參考，不構成投資建議。市場有風險，投資需謹慎。任何投資決策應結合個人風險承受能力、資金狀況和投資目標獨立判斷，必要時諮詢持牌專業機構。過往表現不預示未來收益。
+  <div style="margin-top:8px;">資料來源：westock-data 宏觀指標與行情（2026-10-28）；機構觀點引自公開報導與研報轉述（美銀、巴克萊、摩根士丹利、高盛、貝萊德、德銀、晨星、MAI Capital），屬非一手來源，具體數字需核實原文。</div>
+</div>
+
+</div>
+
+<script>
+var riskData = [
+  { name: '油價二次衝擊→通脹', score: 25 },
+  { name: '長端利率停在5%以上', score: 25 },
+  { name: '股債風險溢價歸零', score: 20 },
+  { name: '聯準會重啟加息', score: 20 },
+  { name: 'AI資本開支融資鏈', score: 15 },
+  { name: '廣度極差/集中度極端', score: 16 },
+  { name: '信用與商業地產', score: 12 },
+  { name: '中期選舉不確定', score: 9 },
+  { name: '外部傳染', score: 6 }
+];
+riskData.sort(function(a, b){ return a.score - b.score; });
+
+var riskChart = echarts.init(document.getElementById('riskChart'));
+riskChart.setOption({
+  grid: { left: 10, right: 60, top: 10, bottom: 10, containLabel: true },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}<br/>風險分數：{c}' },
+  xAxis: { type: 'value', max: 26, splitLine: { lineStyle: { color: '#eef1f5' } }, axisLabel: { color: '#7a8391' } },
+  yAxis: { type: 'category', data: riskData.map(function(d){ return d.name; }), axisLabel: { color: '#3b4553', fontSize: 12 }, axisLine: { lineStyle: { color: '#dfe3e9' } } },
+  series: [{
+    type: 'bar',
+    data: riskData.map(function(d){
+      var c = d.score >= 20 ? '#b02a2a' : (d.score >= 14 ? '#b7791f' : '#8c99a8');
+      return { value: d.score, itemStyle: { color: c, borderRadius: [0, 4, 4, 0] } };
+    }),
+    barWidth: 16,
+    label: { show: true, position: 'right', color: '#5b6472', fontSize: 12 }
+  }]
+});
+
+var yieldChart = echarts.init(document.getElementById('yieldChart'));
+yieldChart.setOption({
+  grid: { left: 10, right: 20, top: 30, bottom: 10, containLabel: true },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}<br/>{c}%' },
+  xAxis: { type: 'category', data: ['聯邦基金上限', '標普500盈利收益率', '10Y美債', '30Y美債'],
+    axisLabel: { color: '#3b4553', fontSize: 12, interval: 0 }, axisLine: { lineStyle: { color: '#dfe3e9' } } },
+  yAxis: { type: 'value', min: 3, max: 6, name: '%', nameTextStyle: { color: '#7a8391' },
+    splitLine: { lineStyle: { color: '#eef1f5' } }, axisLabel: { color: '#7a8391' } },
+  series: [{
+    type: 'bar',
+    barWidth: 46,
+    data: [
+      { value: 4.00, itemStyle: { color: '#8c99a8' } },
+      { value: 5.00, itemStyle: { color: '#b02a2a' } },
+      { value: 4.99, itemStyle: { color: '#1f4e79' } },
+      { value: 5.30, itemStyle: { color: '#1f4e79' } }
+    ],
+    label: { show: true, position: 'top', color: '#3b4553', fontSize: 13, formatter: '{c}%' }
+  }]
+});
+
+function switchRisk(mode){
+  var isChart = mode === 'c';
+  document.getElementById('riskChart').classList.toggle('hide', !isChart);
+  document.getElementById('riskTable').classList.toggle('hide', isChart);
+  document.getElementById('btnC').classList.toggle('on', isChart);
+  document.getElementById('btnT').classList.toggle('on', !isChart);
+  if (isChart) { riskChart.resize(); }
+}
+
+function switchYield(mode){
+  var isChart = mode === 'c';
+  document.getElementById('yieldChart').classList.toggle('hide', !isChart);
+  document.getElementById('yieldTable').classList.toggle('hide', isChart);
+  document.getElementById('btnC2').classList.toggle('on', isChart);
+  document.getElementById('btnT2').classList.toggle('on', !isChart);
+  if (isChart) { yieldChart.resize(); }
+}
+
+window.addEventListener('resize', function(){
+  riskChart.resize();
+  yieldChart.resize();
+});
+</script>
+</body>
+</html>
